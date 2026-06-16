@@ -520,6 +520,18 @@
       margin-top: 0.75rem;
       font-style: italic;
     }
+    .flow-detail {
+      list-style: none;
+      padding: 0;
+      margin: 0.75rem 0 0;
+    }
+    .flow-detail li {
+      font-size: clamp(15px, 1.2vw, 18px);
+      color: var(--ink-light);
+      padding: 0.4em 0;
+      border-bottom: 1px dashed var(--yellow);
+    }
+    .flow-detail li:last-child { border-bottom: none; }
 
     /* 工具中枢大图 */
     .tools-img-wrap {
@@ -1091,7 +1103,7 @@
       </div>
     </div>
 
-    <span class="hero-label reveal reveal-d1">直播分享 · 2024.06.18</span>
+    <span class="hero-label reveal reveal-d1">直播分享 · 2026.06.18</span>
 
     <h1 class="reveal reveal-d2">
       跟Agent搭档<em>100天</em>，<br>我怎么成为了<br>更好的自己
@@ -1219,7 +1231,12 @@
             <span class="flow-arrow">→</span>
             <span class="flow-step">收</span>
           </div>
-          <p class="flow-note">聊着聊着结构就出来了，审方案我选，一句话就上线</p>
+          <ul class="flow-detail">
+            <li>我不写大纲，我聊。聊着聊着结构就出来了。</li>
+            <li>我不做排版，我审。Cola出方案我选。</li>
+            <li>我不找素材/做图，我描述场景。图就生成了。</li>
+            <li>我不手动部署，我说“推上去”。就上线了。</li>
+          </ul>
         </div>
       </div>
     </div>
@@ -1278,6 +1295,7 @@
           <span class="bento-label">协同进步 ↑</span>
           <h4>一个人 + 一个Agent = 一个小团队</h4>
           <p>我出方向+审美，她出执行+技术。不需要开会、不需要等排期、不需要反复对齐需求。</p>
+          <p style="margin-top:0.8em;"><strong>我可能原来是个“两边形选手”，现在正在往“六边形选手”进发。</strong></p>
         </div>
       </div>
 
