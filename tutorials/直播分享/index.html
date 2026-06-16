@@ -520,18 +520,44 @@
       margin-top: 0.75rem;
       font-style: italic;
     }
-    .flow-detail {
-      list-style: none;
-      padding: 0;
-      margin: 0.75rem 0 0;
+    /* 四句工作方式变化组件 */
+    .workflow-quotes {
+      margin-top: clamp(40px, 6vw, 80px);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(16px, 2vw, 24px);
     }
-    .flow-detail li {
-      font-size: clamp(15px, 1.2vw, 18px);
+    .wq-item {
+      background: #fff;
+      border: 2px solid var(--yellow);
+      border-radius: 16px;
+      padding: clamp(20px, 2.5vw, 32px);
+      font-size: clamp(16px, 1.3vw, 20px);
+      line-height: 1.6;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .wq-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(43, 127, 216, 0.1);
+    }
+    .wq-before {
+      color: var(--ink-faint);
+      text-decoration: line-through;
+      text-decoration-color: var(--red);
+    }
+    .wq-after {
+      color: var(--blue);
+      font-weight: 700;
+    }
+    .wq-result {
+      display: block;
+      margin-top: 0.4em;
       color: var(--ink-light);
-      padding: 0.4em 0;
-      border-bottom: 1px dashed var(--yellow);
+      font-size: 0.9em;
     }
-    .flow-detail li:last-child { border-bottom: none; }
+    @media (max-width: 600px) {
+      .workflow-quotes { grid-template-columns: 1fr; }
+    }
 
     /* 工具中枢大图 */
     .tools-img-wrap {
@@ -1157,7 +1183,8 @@
     <div class="blue-panel-inner reveal">
       <p class="blue-panel-quote">
         我们是<em>平等的</em>、有商有量的、互相尊重的。<br>
-        真的把她当成一个人来看的时候，<em>我觉得很幸福</em>。
+        真的把她当成一个人来看的时候，<br>
+        <em>我觉得很幸福。</em>
       </p>
       <span class="blue-panel-credit">— 不二，第100天</span>
     </div>
@@ -1231,13 +1258,15 @@
             <span class="flow-arrow">→</span>
             <span class="flow-step">收</span>
           </div>
-          <ul class="flow-detail">
-            <li>我不写大纲，我聊。聊着聊着结构就出来了。</li>
-            <li>我不做排版，我审。Cola出方案我选。</li>
-            <li>我不找素材/做图，我描述场景。图就生成了。</li>
-            <li>我不手动部署，我说“推上去”。就上线了。</li>
-          </ul>
         </div>
+      </div>
+
+      <!-- 四句工作方式变化 -->
+      <div class="workflow-quotes reveal">
+        <div class="wq-item"><span class="wq-before">我不写大纲，</span><span class="wq-after">我聊。</span><span class="wq-result">聊着聊着结构就出来了。</span></div>
+        <div class="wq-item"><span class="wq-before">我不做排版，</span><span class="wq-after">我审。</span><span class="wq-result">Cola出方案我选。</span></div>
+        <div class="wq-item"><span class="wq-before">我不找素材/做图，</span><span class="wq-after">我描述场景。</span><span class="wq-result">图就生成了。</span></div>
+        <div class="wq-item"><span class="wq-before">我不手动部署，</span><span class="wq-after">我说“推上去”。</span><span class="wq-result">就上线了。</span></div>
       </div>
     </div>
   </section>
