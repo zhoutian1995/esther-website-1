@@ -452,10 +452,46 @@ body {
 .os-traffic .tl-close:hover { transform: scale(1.2); }
 .os-traffic .tl-min { background: #ffbd2e; }
 .os-traffic .tl-max { background: #27c93f; }
+.os-external {
+  position: absolute;
+  top: 10px; right: 12px;
+  width: 20px; height: 20px;
+  cursor: pointer;
+  z-index: 11;
+  opacity: 0.4;
+  transition: opacity 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.os-external:hover { opacity: 0.8; }
+.os-external svg { width: 14px; height: 14px; }
 .os-body {
   padding: 36px 26px 24px;
   max-height: min(56vh, 480px);
   overflow: auto;
+}
+.os-body.os-body-iframe {
+  padding: 36px 0 0;
+  max-height: none;
+  height: calc(100% - 36px);
+  overflow: hidden;
+}
+/* Resize handle */
+.os-resize {
+  position: absolute;
+  bottom: 0; right: 0;
+  width: 16px; height: 16px;
+  cursor: nwse-resize;
+  z-index: 10;
+}
+.os-resize::after {
+  content: '';
+  position: absolute;
+  bottom: 4px; right: 4px;
+  width: 8px; height: 8px;
+  border-right: 2px solid rgba(0,0,0,0.15);
+  border-bottom: 2px solid rgba(0,0,0,0.15);
 }
 .os-body.imgview {
   padding: 0;
@@ -1288,29 +1324,25 @@ body {
     <div class="desktop-surface" id="desktopSurface">
 
       <div class="desktop-icons">
-        <div class="dicon" data-win="win-values">
+        <div class="dicon" data-href="https://hiesther.me/tutorials/域名教程/">
           <div class="dicon-art file ext-md" data-ext=".md"></div>
-          <div class="dicon-label">values.md</div>
+          <div class="dicon-label">域名教程</div>
         </div>
-        <div class="dicon" data-win="win-journey">
+        <div class="dicon" data-href="https://hiesther.me/tutorials/人生系统/">
           <div class="dicon-art file ext-md" data-ext=".md"></div>
-          <div class="dicon-label">journey.md</div>
+          <div class="dicon-label">人生系统</div>
         </div>
-        <div class="dicon" data-win="win-now">
-          <div class="dicon-art file ext-html" data-ext=".html"></div>
-          <div class="dicon-label">now.html</div>
+        <div class="dicon" data-href="https://hiesther.me/tutorials/部署教程/">
+          <div class="dicon-art file ext-md" data-ext=".md"></div>
+          <div class="dicon-label">部署教程</div>
         </div>
-        <div class="dicon" data-win="win-buer">
-          <div class="dicon-art file ext-png" data-ext=".png"><img src="buer-ip.jpg" alt=""></div>
-          <div class="dicon-label">不二.png</div>
+        <div class="dicon" data-href="https://hiesther.me/tutorials/直播分享/">
+          <div class="dicon-art file ext-md" data-ext=".md"></div>
+          <div class="dicon-label">直播分享</div>
         </div>
-        <div class="dicon" data-win="win-3views">
-          <div class="dicon-art file ext-png" data-ext=".png"><img src="buer-3views.png" alt=""></div>
-          <div class="dicon-label">三视图.png</div>
-        </div>
-        <div class="dicon" data-win="win-works">
-          <div class="dicon-art folder"></div>
-          <div class="dicon-label">works/</div>
+        <div class="dicon" data-href="https://hiesther.me/tutorials/cola+ob%E8%87%AA%E5%AA%92%E4%BD%93%E5%88%86%E4%BA%AB/">
+          <div class="dicon-art file ext-md" data-ext=".md"></div>
+          <div class="dicon-label">Cola+OB分享</div>
         </div>
         <div class="dicon" data-win="win-sayhi">
           <div class="dicon-art folder"></div>
@@ -1323,93 +1355,6 @@ body {
       </div>
 
       <!-- Window templates (hidden until opened) -->
-      <template id="win-values">
-        <div class="os-window" data-title="values.md" data-url="~/desktop/values.md">
-          <div class="os-body win-md">
-            <h1>我是这样的人</h1>
-            <div class="value-list">
-              <div class="value-item"><p>做东西丑了我会睡不着觉</p></div>
-              <div class="value-item"><p>人类是不会被AI替代的</p></div>
-              <div class="value-item"><p>讨厌所有散播焦虑的信息</p></div>
-            </div>
-          </div>
-        </div>
-      </template>
-
-      <template id="win-journey">
-        <div class="os-window" data-title="journey.md" data-url="~/desktop/journey.md">
-          <div class="os-body win-md">
-            <h1>两次转弯</h1>
-            <div class="turning-points">
-              <div class="tp-item">
-                <div class="tp-title">建筑 → 运营</div>
-                <div class="tp-desc">南京大学建筑学 → 米兰理工 Architecture &amp; Urban Design。然后离开了画图桌。</div>
-              </div>
-              <div class="tp-item">
-                <div class="tp-title">运营 → AI</div>
-                <div class="tp-desc">从达人运营到白酒行业市场,再到 AI 行业 - 现在在 ColaOS 从 0 到 1 搭增长体系。</div>
-              </div>
-              <div class="tp-item">
-                <div class="tp-title">同一件事</div>
-                <div class="tp-desc">每一次都以为自己在走弯路,回头看才发现,都是在找同一件事--把混乱变成秩序,然后点亮其他人。</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </template>
-
-      <template id="win-now">
-        <div class="os-window" data-title="now.html" data-url="hiesther.me/now">
-          <div class="os-body win-md">
-            <h1>正在做的事</h1>
-            <div class="now-list">
-              <div class="now-item">
-                <span class="now-num">01</span>
-                <div class="now-text">ColaOS 运营</div>
-                <div class="now-sub">国内增长 0 → 1</div>
-              </div>
-              <div class="now-item">
-                <span class="now-num">02</span>
-                <div class="now-text">人生系统搭建</div>
-                <div class="now-sub">Cola + Obsidian</div>
-              </div>
-              <div class="now-item">
-                <span class="now-num">03</span>
-                <div class="now-text">IP 搭建</div>
-                <div class="now-sub">小红书 @ESTHER不二 等社媒</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </template>
-
-      <template id="win-buer">
-        <div class="os-window" data-title="不二.png" data-url="~/desktop/不二.png">
-          <div class="os-body imgview"><img src="buer-ip.jpg" alt="不二 IP 形象"></div>
-        </div>
-      </template>
-
-      <template id="win-3views">
-        <div class="os-window" data-title="三视图.png" data-url="~/desktop/三视图.png">
-          <div class="os-body imgview"><img src="buer-3views.png" alt="不二三视图"></div>
-        </div>
-      </template>
-
-      <template id="win-works">
-        <div class="os-window" data-title="works/" data-url="~/desktop/works">
-          <div class="os-body win-md">
-            <h1>作品集</h1>
-            <div class="folder-list">
-              <div class="folder-row">内容创作 <span class="fr-sub">待放入代表作</span></div>
-              <div class="folder-row">设计系统 <span class="fr-sub">待放入代表作</span></div>
-              <div class="folder-row">AI 实践 <span class="fr-sub">待放入代表作</span></div>
-              <div class="folder-row">品牌运营 <span class="fr-sub">待放入代表作</span></div>
-            </div>
-            <button class="win-link" data-goto="works">open works →</button>
-          </div>
-        </div>
-      </template>
-
       <template id="win-sayhi">
         <div class="os-window" data-title="say-hi" data-url="mailto:esther.sjw@gmail.com">
           <div class="os-body win-sayhi">
@@ -1417,7 +1362,7 @@ body {
             <div class="sayhi-sub">I don't bite - my AI might though.</div>
             <div class="sayhi-links">
               <span>📮 <a href="mailto:esther.sjw@gmail.com">esther.sjw@gmail.com</a></span>
-              <span>📕 <a href="#">小红书 @ESTHER不二</a></span>
+              <span>📕 <a href="https://www.xiaohongshu.com/user/profile/55c6c7695894460904f87b47" target="_blank">小红书 @ESTHER不二</a></span>
             </div>
             <div class="sayhi-quote">"找到你喜欢的事,然后让它杀死你。"<br>- Charles Bukowski</div>
           </div>
@@ -1580,7 +1525,7 @@ body {
                   <div class="gt-line">&nbsp;</div>
                   <div class="gt-line"><span class="gt-prompt">$ </span><span class="gt-cmd">cat contact.md</span></div>
                   <div class="gt-line gt-output">📮 <a href="mailto:esther.sjw@gmail.com">esther.sjw@gmail.com</a></div>
-                  <div class="gt-line gt-output">📕 小红书 <a href="#">@ESTHER不二</a></div>
+                  <div class="gt-line gt-output">📕 小红书 <a href="https://www.xiaohongshu.com/user/profile/55c6c7695894460904f87b47" target="_blank">@ESTHER不二</a></div>
                   <div class="gt-line">&nbsp;</div>
                   <div class="gt-line"><span class="gt-prompt">$ </span><span class="gt-cmd">fortune</span></div>
                   <div class="gt-line gt-dim">“找到你喜欢的事，然后让它杀死你。” — Bukowski</div>
@@ -1902,6 +1847,33 @@ body {
   var winZ = 100;
   var openCount = 0;
 
+  function addResize(win) {
+    var handle = document.createElement('div');
+    handle.className = 'os-resize';
+    win.appendChild(handle);
+    handle.addEventListener('pointerdown', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      var startX = e.clientX, startY = e.clientY;
+      var startW = win.offsetWidth, startH = win.offsetHeight;
+      var iframes = win.querySelectorAll('iframe');
+      iframes.forEach(function(f) { f.style.pointerEvents = 'none'; });
+      function onMove(ev) {
+        var newW = Math.max(280, startW + ev.clientX - startX);
+        var newH = Math.max(200, startH + ev.clientY - startY);
+        win.style.width = newW + 'px';
+        win.style.height = newH + 'px';
+      }
+      function onUp() {
+        iframes.forEach(function(f) { f.style.pointerEvents = ''; });
+        document.removeEventListener('pointermove', onMove);
+        document.removeEventListener('pointerup', onUp);
+      }
+      document.addEventListener('pointermove', onMove);
+      document.addEventListener('pointerup', onUp);
+    });
+  }
+
   function openWindow(tplId) {
     // If already open, bring to front
     var existing = surface.querySelector('.os-window[data-from="' + tplId + '"]');
@@ -1975,11 +1947,93 @@ body {
       btn.addEventListener('click', function() { location.hash = btn.dataset.goto; });
     });
 
+    addResize(win);
+    surface.appendChild(win);
+  }
+
+  function openIframeWindow(url, title) {
+    // If already open, bring to front
+    var existing = surface.querySelector('.os-window[data-href-src="' + url + '"]');
+    if (existing) { existing.style.zIndex = ++winZ; return; }
+
+    var win = document.createElement('div');
+    win.className = 'os-window';
+    win.dataset.hrefSrc = url;
+
+    var dragbar = document.createElement('div');
+    dragbar.className = 'os-dragbar';
+    win.appendChild(dragbar);
+
+    var traffic = document.createElement('div');
+    traffic.className = 'os-traffic';
+    traffic.innerHTML = '<span class="tl-close"></span><span class="tl-min"></span><span class="tl-max"></span>';
+    win.appendChild(traffic);
+
+    var body = document.createElement('div');
+    body.className = 'os-body os-body-iframe';
+    var iframe = document.createElement('iframe');
+    iframe.src = url;
+    iframe.style.cssText = 'width:100%;height:100%;border:none;border-radius:0 0 10px 10px;';
+    body.appendChild(iframe);
+    win.appendChild(body);
+
+    var isSmall = window.innerWidth <= 768;
+    var surfW = surface.offsetWidth || window.innerWidth;
+    var surfH = surface.offsetHeight || window.innerHeight;
+    var winW = Math.min(700, surfW * 0.88);
+    var winH = Math.min(520, surfH * 0.75);
+    win.style.width = winW + 'px';
+    win.style.height = winH + 'px';
+    var offset = (openCount % 5) * (isSmall ? 16 : 30);
+    win.style.left = Math.max(8, (surfW - winW) / 2 + offset) + 'px';
+    win.style.top = Math.max(8, (surfH - winH) / 2 - 20 + offset) + 'px';
+    win.style.zIndex = ++winZ;
+    openCount++;
+
+    traffic.querySelector('.tl-close').addEventListener('click', function(e) {
+      e.stopPropagation();
+      win.remove();
+    });
+    win.addEventListener('pointerdown', function() { win.style.zIndex = ++winZ; });
+    dragbar.addEventListener('pointerdown', function(e) {
+      e.preventDefault();
+      var startX = e.clientX, startY = e.clientY;
+      var origX = win.offsetLeft, origY = win.offsetTop;
+      function onMove(ev) {
+        win.style.left = (origX + ev.clientX - startX) + 'px';
+        win.style.top = (origY + ev.clientY - startY) + 'px';
+      }
+      function onUp() {
+        document.removeEventListener('pointermove', onMove);
+        document.removeEventListener('pointerup', onUp);
+      }
+      document.addEventListener('pointermove', onMove);
+      document.addEventListener('pointerup', onUp);
+    });
+
+    // External open button (top-right)
+    var extBtn = document.createElement('div');
+    extBtn.className = 'os-external';
+    extBtn.title = '在新窗口打开';
+    extBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>';
+    extBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      window.open(url, '_blank');
+    });
+    win.appendChild(extBtn);
+
+    addResize(win);
     surface.appendChild(win);
   }
 
   surface.querySelectorAll('.dicon').forEach(function(icon) {
-    icon.addEventListener('click', function() { openWindow(icon.dataset.win); });
+    icon.addEventListener('click', function() {
+      if (icon.dataset.href) {
+        openIframeWindow(icon.dataset.href, icon.querySelector('.dicon-label').textContent);
+      } else if (icon.dataset.win) {
+        openWindow(icon.dataset.win);
+      }
+    });
   });
 
   /* ============================================
