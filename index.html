@@ -1629,26 +1629,26 @@ body {
       <template id="win-design-skill">
         <div class="os-window" data-title="Design Skill" data-url="hiesther.me/tutorials/esther-design-system">
           <div class="os-body win-folder">
-            <a class="folder-icon" href="https://hiesther.me/tutorials/esther-design-system/" target="_blank">
+            <div class="folder-icon" data-href="https://hiesther.me/tutorials/esther-design-system/">
               <div class="folder-icon-art file ext-html" data-ext=".html"></div>
               <div class="folder-icon-label">Design Skill教程</div>
-            </a>
-            <a class="folder-icon" href="https://hiesther.me/tutorials/esther-design-system/demo-readme-cards.html" target="_blank">
+            </div>
+            <div class="folder-icon" data-href="https://hiesther.me/tutorials/esther-design-system/demo-readme-cards.html">
               <div class="folder-icon-art file ext-html" data-ext=".html"></div>
               <div class="folder-icon-label">Demo ReadMe Cards</div>
-            </a>
-            <a class="folder-icon" href="https://hiesther.me/tutorials/esther-design-system/design-skill-story.html" target="_blank">
+            </div>
+            <div class="folder-icon" data-href="https://hiesther.me/tutorials/esther-design-system/design-skill-story.html">
               <div class="folder-icon-art file ext-html" data-ext=".html"></div>
               <div class="folder-icon-label">Design Skill Story</div>
-            </a>
-            <a class="folder-icon" href="https://hiesther.me/tutorials/esther-design-system/components-preview.html" target="_blank">
+            </div>
+            <div class="folder-icon" data-href="https://hiesther.me/tutorials/esther-design-system/components-preview.html">
               <div class="folder-icon-art file ext-html" data-ext=".html"></div>
               <div class="folder-icon-label">设计组件库</div>
-            </a>
-            <a class="folder-icon" href="https://github.com/esthersjw/esther-design-system" target="_blank">
+            </div>
+            <div class="folder-icon" data-href="https://github.com/esthersjw/esther-design-system">
               <div class="folder-icon-art file ext-git" data-ext=".git"></div>
               <div class="folder-icon-label">GitHub Repo</div>
-            </a>
+            </div>
           </div>
         </div>
       </template>
@@ -2345,6 +2345,15 @@ body {
         openWindow(icon.dataset.win);
       }
     });
+  });
+
+  // Folder icon dblclick → open iframe window on desktop
+  surface.addEventListener('dblclick', function(e) {
+    var fi = e.target.closest('.folder-icon[data-href]');
+    if (!fi) return;
+    var url = fi.dataset.href;
+    var label = fi.querySelector('.folder-icon-label').textContent;
+    openIframeWindow(url, label);
   });
 
   /* ============================================
