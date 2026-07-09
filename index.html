@@ -1759,15 +1759,25 @@ body {
       </template>
 
       <template id="win-ver3-cola">
-        <div class="os-window" data-title="Cola" data-url="hiesther.me" style="width:400px;">
-          <div class="os-body" style="padding:20px 24px;">
-            <div style="display:flex;flex-direction:column;gap:12px;font-size:14px;line-height:1.7;">
-              <div style="align-self:flex-end;background:#2B7FD8;color:#fff;padding:10px 16px;border-radius:16px 16px 4px 16px;max-width:80%;">打开 Ver 3</div>
-              <div style="display:flex;gap:10px;align-items:flex-start;">
-                <img src="cola-avatar.png" alt="Cola" style="width:28px;height:28px;border-radius:50%;flex-shrink:0;margin-top:2px;">
-                <div>
-                  <div style="font-size:12px;color:#999;font-style:italic;margin-bottom:4px;">……你认真的吗。</div>
-                  <div style="background:#f5f3ee;padding:12px 16px;border-radius:4px 16px 16px 16px;">你现在就站在 Ver 3 上面。往四周看看？这整个桌面就是 Ver 3。<br><br>要不要我帮你打开一面镜子？</div>
+        <div class="os-window cola-window" data-title="Cola" data-url="hiesther.me/ver3" style="width:420px;height:320px;">
+          <div class="os-body" style="padding:0;max-height:none;height:100%;overflow:hidden;">
+            <div class="cola-inner">
+              <div class="cola-sidebar">
+                <div class="cola-sidebar-avatar"><img src="cola-avatar.png" alt="Cola" loading="lazy"></div>
+              </div>
+              <div class="cola-main">
+                <div class="cola-topbar">
+                  <span class="cola-tab active">对话</span>
+                </div>
+                <div class="cola-chat">
+                  <div class="cola-msg-user"><div class="cola-bubble">打开 Ver 3</div></div>
+                  <div class="cola-msg-bot">
+                    <div class="cola-bot-avatar"><img src="cola-avatar.png" alt="Cola" loading="lazy"></div>
+                    <div class="cola-bot-content">
+                      <div class="cola-mutter">……你认真的吗。</div>
+                      <div>你现在就站在 Ver 3 上面。往四周看看？这整个桌面就是 Ver 3。<br><br>要不要我帮你打开一面镜子？</div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
