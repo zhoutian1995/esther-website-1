@@ -262,6 +262,13 @@ body {
   color: var(--ink-faint);
   letter-spacing: 1px;
 }
+.hero-cta .cta-sub {
+  margin-top: 6px;
+  font-family: 'Noto Sans SC', sans-serif;
+  font-size: 11px;
+  color: rgba(125, 135, 129, 0.75);
+  letter-spacing: 0.04em;
+}
 .hero-cta .cta-arrow {
   font-size: 18px;
   color: var(--ink-faint);
@@ -703,6 +710,98 @@ body {
   content: '\2022';
   margin-right: 3px;
 }
+.duty-room {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+.duty-card {
+  min-height: 148px;
+  background: #fffdf8;
+  border: 1px solid rgba(26,26,26,0.10);
+  border-radius: 16px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(26,26,26,0.055);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+.duty-card:hover {
+  transform: translateY(-3px) rotate(-0.4deg);
+  box-shadow: 0 14px 26px rgba(26,26,26,0.10);
+  border-color: rgba(241,117,45,0.35);
+}
+.duty-card.primary {
+  background: linear-gradient(135deg, #fff7dc 0%, #fffdf8 72%);
+}
+.duty-card:nth-child(2):hover { transform: translateY(-3px) rotate(0.5deg); }
+.duty-card:nth-child(3):hover { transform: translateY(-3px) rotate(0.35deg); }
+.duty-card:nth-child(4):hover { transform: translateY(-3px) rotate(-0.2deg); }
+.duty-photo {
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #f4efe4;
+  border: 1px solid rgba(26,26,26,0.08);
+  flex-shrink: 0;
+}
+.duty-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.duty-photo.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #f1752d;
+  font-size: 20px;
+  font-weight: 800;
+  font-family: 'Fira Code', monospace;
+  background: #fff1cf;
+}
+.duty-role {
+  font-family: 'Fira Code', monospace;
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #9d8b72;
+}
+.duty-title {
+  font-size: 15px;
+  line-height: 1.2;
+  font-weight: 700;
+  color: #1a1a1a;
+  font-family: -apple-system, 'PingFang SC', sans-serif;
+}
+.duty-desc {
+  font-size: 12px;
+  line-height: 1.55;
+  color: #5f5a50;
+  font-family: -apple-system, 'PingFang SC', sans-serif;
+}
+.duty-action {
+  margin-top: auto;
+  font-size: 11px;
+  color: #f1752d;
+  font-weight: 700;
+  font-family: -apple-system, 'PingFang SC', sans-serif;
+}
+.duty-note {
+  background: #f7f1e4;
+  border: 1px dashed rgba(26,26,26,0.14);
+  border-radius: 14px;
+  padding: 10px 12px;
+  font-size: 12px;
+  line-height: 1.65;
+  color: #4a463d;
+  font-family: -apple-system, 'PingFang SC', sans-serif;
+}
 .cola-input-bar {
   background: #f9f8f5;
   padding: 10px 12px;
@@ -776,6 +875,8 @@ body {
   .cola-topbar { gap: 12px; padding: 0 10px; }
   .cola-tab { font-size: 11px; }
   .cola-chat { padding: 12px 10px; }
+  .duty-room { grid-template-columns: 1fr; }
+  .duty-card { min-height: 128px; }
 }
 .os-body.win-sayhi {
   background: var(--cream);
@@ -1635,7 +1736,8 @@ body {
       <div class="macbook-shadow"></div>
     </div>
     <div class="hero-cta" id="heroCta">
-      <div class="cta-text">Press Enter to Launch</div>
+      <div class="cta-text">Scroll to Launch</div>
+      <div class="cta-sub">滚轮 / 触控 / 点击屏幕都可以进入</div>
       <div class="cta-arrow">↓</div>
     </div>
   </section>
@@ -1799,7 +1901,7 @@ body {
         </div>
         <div class="dicon" data-win="win-cola" style="top:384px;right:114px;">
           <div class="dicon-art app-cola"><img src="assets/weitian/wille-three-cats.jpg" alt="三只猫" loading="lazy"></div>
-          <div class="dicon-label">三只猫</div>
+          <div class="dicon-label">三只猫值班室</div>
         </div>
         <div class="dicon" data-href="#system" style="top:474px;right:114px;">
           <div class="dicon-art file ext-html" data-ext=".html"></div>
@@ -1961,7 +2063,7 @@ body {
       </template>
 
       <template id="win-cola">
-        <div class="os-window cola-window" data-title="三只猫·系统管理员" data-url="维天 OS / cats">
+        <div class="os-window cola-window" data-title="三只猫值班室" data-url="维天 OS / duty-room">
           <div class="os-body" style="padding:0; max-height:none; height:100%; overflow:hidden;">
             <div class="cola-inner">
               <!-- Cola Sidebar -->
@@ -1982,38 +2084,47 @@ body {
                 </div>
                 <div class="cola-search">
                   <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8" fill="none" stroke="#aaa" stroke-width="2"/><path d="M21 21l-4.35-4.35" fill="none" stroke="#aaa" stroke-width="2"/></svg>
-                  <span>搜索聊天记录...</span>
+                  <span>输入你现在卡住的问题，交给对应管理员</span>
                 </div>
                 <!-- Chat -->
                 <div class="cola-chat">
-                  <div class="cola-msg-user"><div class="cola-bubble">三位管理员，介绍一下你们的分工吧</div></div>
-                  <div class="cola-msg-bot">
-                    <div class="cola-bot-avatar"><img src="assets/weitian/cat-shadiao-real.jpg" alt="沙雕真实照片" loading="lazy"></div>
-                    <div class="cola-bot-content">
-                      <div class="cola-mutter">沙雕先来。</div>
-                      <div>我是沙雕，美短，内容研究员。负责收集灵感、整理素材，顺便监督 Wille 别把收藏当学习。</div>
+                  <div class="cola-msg-user"><div class="cola-bubble">我想用 AI 做内容，现在该找谁？</div></div>
+                  <div class="duty-room">
+                    <div class="duty-card primary" data-open-win="win-workflow-directory">
+                      <div class="duty-photo"><img src="assets/weitian/cat-shadiao-real.jpg" alt="沙雕真实照片" loading="lazy"></div>
+                      <div class="duty-role">research</div>
+                      <div class="duty-title">沙雕研究室</div>
+                      <div class="duty-desc">把经历、笔记和卡点拆成选题、问题卡和可讲清楚的内容切片。</div>
+                      <div class="duty-action">打开内容工作流 →</div>
+                    </div>
+                    <div class="duty-card" data-goto="works">
+                      <div class="duty-photo"><img src="assets/weitian/cat-bengbeng-real.jpg" alt="蹦蹦真实照片" loading="lazy"></div>
+                      <div class="duty-role">voice</div>
+                      <div class="duty-title">蹦蹦表达室</div>
+                      <div class="duty-desc">从想法到口播，检查开头、节奏、说人话程度和发布前的事实边界。</div>
+                      <div class="duty-action">去看口播入口 →</div>
+                    </div>
+                    <div class="duty-card" data-open-win="win-selected">
+                      <div class="duty-photo"><img src="assets/weitian/cat-datou-real.jpg" alt="大头真实照片" loading="lazy"></div>
+                      <div class="duty-role">creative</div>
+                      <div class="duty-title">大头创意室</div>
+                      <div class="duty-desc">看网站、封面、IP 视觉和内容实验，判断有没有记忆点、有没有一点好玩。</div>
+                      <div class="duty-action">打开找我精选 →</div>
+                    </div>
+                    <div class="duty-card" data-open-win="win-sayhi">
+                      <div class="duty-photo icon">粮</div>
+                      <div class="duty-role">supply</div>
+                      <div class="duty-title">猫粮仓</div>
+                      <div class="duty-desc">领取工作流、关注维天说，或者给这个持续更新中的个人 OS 加一点补给。</div>
+                      <div class="duty-action">领取工作流 →</div>
                     </div>
                   </div>
-                  <div class="cola-msg-user"><div class="cola-bubble">另外两位呢？</div></div>
-                  <div class="cola-msg-bot">
-                    <div class="cola-bot-avatar"><img src="assets/weitian/cat-bengbeng-real.jpg" alt="蹦蹦真实照片" loading="lazy"></div>
-                    <div class="cola-bot-content">
-                      <div class="cola-mutter">蹦蹦开始点名。</div>
-                      <div>我是蹦蹦，暹罗，表达监督员；大头是金渐层，创意体验官。一个催口播，一个管好不好玩。</div>
-                    </div>
-                  </div>
-                  <div class="cola-msg-bot">
-                    <div class="cola-bot-avatar"><img src="assets/weitian/cat-datou-real.jpg" alt="大头真实照片" loading="lazy"></div>
-                    <div class="cola-bot-content">
-                      <div class="cola-mutter">大头正在研究方块。</div>
-                      <div>网站要有用，也要有点好玩。维天 OS 的体验部分归我检查。</div>
-                    </div>
-                  </div>
+                  <div class="duty-note">值班室不是装饰：研究负责找问题，表达负责说清楚，创意负责让人记住，猫粮仓负责把你带到领取和持续更新。</div>
                 </div>
                 <!-- Input -->
                 <div class="cola-input-bar">
                   <div class="cola-input-container">
-                    <div class="cola-input-text">输入消息...</div>
+                    <div class="cola-input-text">把问题交给值班室：选题、口播、创意还是领取工作流？</div>
                     <div class="cola-input-toolbar">
                       <div class="cola-toolbar-left">
                         <svg viewBox="0 0 24 24"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
@@ -2026,7 +2137,6 @@ body {
                         </div>
                       </div>
                     </div>
-                    <div class="cola-coming-soon">真实照片已接入：沙雕、蹦蹦和大头正在值班。</div>
                   </div>
                 </div>
               </div>
@@ -2324,6 +2434,8 @@ body {
 
   var container = document.getElementById('terminalLines');
   var heroCta = document.getElementById('heroCta');
+  var skipIntroTyping = null;
+  var launchIntentAt = 0;
 
   function renderLine(item) {
     var div = document.createElement('div');
@@ -2371,7 +2483,7 @@ body {
 
     var typingTimeout = setTimeout(finishIntro, lineDelay + 600);
 
-    var skipTyping = function() {
+    skipIntroTyping = function() {
       if (typingDone) return;
       clearTimeout(typingTimeout);
       divs.forEach(function(d) { d.style.animationDelay = '0ms'; d.classList.add('visible'); });
@@ -2379,10 +2491,10 @@ body {
     };
 
     document.getElementById('heroSection').addEventListener('click', function() {
-      if (!typingDone) skipTyping();
+      if (!typingDone && skipIntroTyping) skipIntroTyping();
     });
     document.addEventListener('keydown', function(e) {
-      if (!typingDone && e.key !== 'Enter') skipTyping();
+      if (!typingDone && e.key !== 'Enter' && skipIntroTyping) skipIntroTyping();
     });
   }
 
@@ -2472,13 +2584,41 @@ body {
     }, 1800);
   }
 
+  function requestLaunch() {
+    if (launched || currentTab() !== 'home') return;
+    var now = Date.now();
+    if (now - launchIntentAt < 500) return;
+    launchIntentAt = now;
+    if (!typingDone && skipIntroTyping) skipIntroTyping();
+    requestAnimationFrame(function() {
+      launch();
+    });
+  }
+
   document.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter' && !launched) launch();
+    if (e.key === 'Enter' && !launched) requestLaunch();
   });
   document.getElementById('macbookBezel').addEventListener('click', function() {
-    if (typingDone) launch();
+    requestLaunch();
   });
-  heroCta.addEventListener('click', launch);
+  heroCta.addEventListener('click', requestLaunch);
+  document.getElementById('heroSection').addEventListener('wheel', function(e) {
+    if (launched || currentTab() !== 'home') return;
+    if (Math.abs(e.deltaY) < 8) return;
+    e.preventDefault();
+    requestLaunch();
+  }, { passive: false });
+  var heroTouchY = null;
+  document.getElementById('heroSection').addEventListener('touchstart', function(e) {
+    if (e.touches.length) heroTouchY = e.touches[0].clientY;
+  }, { passive: true });
+  document.getElementById('heroSection').addEventListener('touchmove', function(e) {
+    if (launched || currentTab() !== 'home' || heroTouchY === null || !e.touches.length) return;
+    var dy = heroTouchY - e.touches[0].clientY;
+    if (dy < 18) return;
+    e.preventDefault();
+    requestLaunch();
+  }, { passive: false });
 
   /* ============================================
      DESKTOP WINDOW MANAGER
