@@ -2819,9 +2819,21 @@ body {
     surface.appendChild(win);
   }
 
-  // Make icons draggable + clickable (macOS style)
+  function openDesktopIcon(icon) {
+    if (icon.dataset.href) {
+      openIframeWindow(icon.dataset.href, icon.querySelector('.dicon-label').textContent);
+    } else if (icon.dataset.win) {
+      openWindow(icon.dataset.win);
+    }
+  }
+
+  // Make icons draggable + clickable (touch-friendly macOS style)
   surface.querySelectorAll('.dicon').forEach(function(icon) {
     var wasDragged = false;
+    icon.setAttribute('role', 'button');
+    icon.setAttribute('tabindex', '0');
+    icon.setAttribute('aria-label', icon.querySelector('.dicon-label').textContent);
+
     icon.addEventListener('pointerdown', function(e) {
       if (e.button !== 0) return;
       e.preventDefault();
@@ -2850,11 +2862,21 @@ body {
       document.addEventListener('pointermove', onMove);
       document.addEventListener('pointerup', onUp);
     });
+    icon.addEventListener('click', function(e) {
+      e.preventDefault();
+      if (wasDragged) {
+        setTimeout(function() { wasDragged = false; }, 0);
+        return;
+      }
+      openDesktopIcon(icon);
+    });
     icon.addEventListener('dblclick', function() {
-      if (icon.dataset.href) {
-        openIframeWindow(icon.dataset.href, icon.querySelector('.dicon-label').textContent);
-      } else if (icon.dataset.win) {
-        openWindow(icon.dataset.win);
+      openDesktopIcon(icon);
+    });
+    icon.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openDesktopIcon(icon);
       }
     });
   });
